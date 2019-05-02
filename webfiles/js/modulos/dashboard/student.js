@@ -8,36 +8,37 @@ function init() {
         _that = list;
         UserController.getUserByType(typeStudant).then(resolve => {
             if(resolve.status){
-                let data = resolve.data;
-                let list = '';
-                list += data.map(res => {
-                    return `
-                    <tr class="trStudenty" id="${res.id}">
+                mountListStudent(resolve.data)
+            }
+
+        })
+    });
+}
+function mountListStudent(data , concat = false) {
+    let list = '';
+    list += data.map(res => {
+        return `
+                    <tr value="${res.name}" class="trStudenty" id="${res.id}">
                         <td>${res.name}</td>
                         <td>${res.email}</td>
                         <td>Aluno</td>
                         <td userEmail="${res.email}" class="statusStudent" id="${res.status}"><span class="${res.status}">${checkStatus(res.status)}</span></td>
                     </tr>
                 `;
-                }).join(' ');
+    }).join(' ');
 
-                _that.innerHTML = list;
+    _that.innerHTML = list;
 
-                elementPorperty.addEventInElement('.trStudenty','onclick',function(){
-                    alert(this.getAttribute('id'))
-                });
+    elementPorperty.addEventInElement('.trStudenty','onclick',function(){
+        //alert(this.getAttribute('id'))
+    });
 
-                elementPorperty.addEventInElement('.statusStudent','onclick',function(e){
-                    $('#modalStatus').modal('open');
-                    emailSeleceted = this.getAttribute('userEmail');
-                    e.stopPropagation();
-                });
-            }
-
-        })
+    elementPorperty.addEventInElement('.statusStudent','onclick',function(e){
+        $('#modalStatus').modal('open');
+        emailSeleceted = this.getAttribute('userEmail');
+        e.stopPropagation();
     });
 }
-
 function checkStatus(status){
     return statusStudent[status];
 }
@@ -48,6 +49,7 @@ elementPorperty.addEventInElement('#blockedUser','onclick',function(){
     data.status = StatusBlocked;
     UserController.changeStatusUSer(data).then(callback => {
         if(callback.status){
+            $('#modalStatus').modal('close');
             swal(':)',emailSeleceted+' foi bloqueado  com sucesso','success');
             init();
         }
@@ -61,6 +63,7 @@ elementPorperty.addEventInElement('#freeUser','onclick',function(){
     data.status = StatusFree;
     UserController.changeStatusUSer(data).then(callback => {
         if(callback.status){
+            $('#modalStatus').modal('close');
             swal(':)',emailSeleceted +' liberado com sucesso','success');
             init();
         }
@@ -68,5 +71,12 @@ elementPorperty.addEventInElement('#freeUser','onclick',function(){
 });
 
 elementPorperty.addEventInElement('#searchStudent','onkeydown',function(){
-    let search = this.value;
+    let keys = this.value;
+    elementPorperty.getElement('.trStudenty',user => {
+        user.hidden = true;
+        if(user.getAttribute("value").toUpperCase().startsWith(keys.toUpperCase())){
+            user.hidden = false;
+        }
+    })
 });
+

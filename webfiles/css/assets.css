@@ -1,8 +1,17 @@
 body {
     font-family: 'Dosis', sans-serif;
 }
+i{
+    cursor: pointer!important;
+}
 .ml{
     margin-left: 18vw!important;
+}
+.modal30{
+    width: 30%!important;
+}
+input::placeholder{
+    color: gray!important;
 }
 *{
     margin: 0;

@@ -1,7 +1,7 @@
 
-initListStudent();
+initListContent();
 
-function initListStudent(){
+function initListContent(){
 
     elementProperty.getElement('#mountListFiles' , element => {
         _that = element;
@@ -29,7 +29,7 @@ function initListStudent(){
                         if(callback){
                             ContentController.delete(data).then(res => {
                                 Materialize.toast('Conteúdo retirado' , 1000);
-                                initListStudent();
+                                initListContent();
                             });
                         }
                     });
@@ -59,6 +59,7 @@ elementProperty.addEventInElement('#sendContent','onclick',function(){
     ContentController.sendContentFile(formData).then(resolve => {
         console.log(resolve)
         if(resolve.status){
+            initListContent();
             document.getElementById('titleContent').value = '';
             document.getElementById('descriptionContent').value = '';
             document.getElementById('fileContent').value = '';
@@ -79,6 +80,7 @@ elementProperty.addEventInElement('#sendContentVideo','onclick',function(){
     if(data.description !== "" && data.title !== "" || data.link !== ""){
         ContentController.sendContentVideo(data).then(resolve => {
             if(resolve.status){
+                initListContent();
                 Materialize.toast('Conteúdo enviado com sucesso',1000);
                 document.getElementById('linkYt').value = '';
                 document.getElementById('titleSecond').value = '';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/05/2019 às 10:48
+-- Tempo de geração: 02/05/2019 às 12:07
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.4
 
@@ -42,11 +42,8 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`name`, `title`, `description`, `isvideo`, `id`, `datenow`) VALUES
-('02-05-19-04-33-58.jpg', 'sd', 'sd', 0, 15, '02-05-19-04-33-58'),
-('as', 'as', 'as', 1, 16, '02-05-19-04-34-03'),
-('dsf', 'sdf', 'sdf', 1, 17, '02-05-19-04-35-22'),
-('ds', 'sd', 'sd', 1, 19, '02-05-19-04-36-39'),
-('02-05-19-04-37-21.jpg', 'sdf', 'sdf', 0, 20, '02-05-19-04-37-21');
+('', 'Direito empresarial 2', 'Referente a aula passada', 0, 21, '02-05-19-05-55-48'),
+('https://www.youtube.com/watch?v=4Mtk8F9A1OY', 'Como se fazem os tiltadores?', 'nada a declarar', 1, 22, '02-05-19-05-56-21');
 
 -- --------------------------------------------------------
 
@@ -127,10 +124,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `token`, `status
 (1, 'betho', 'teste', 'teste', '1', 'Nzk=', ''),
 (2, 'Rubia', 'rubia@gmail.com', '123', '2', '444', 'blocked'),
 (3, 'José', 'jose@hotmail.com', '123', '3', 'asd', 'free'),
-(6, 'Vyne', 'vayne@hotmail.com', '123', '3', 'asd', 'free'),
 (8, 'Glaucia', 'glaucinha200@hotmail.com', '123', '2', 'asd', 'free'),
 (9, 'Jofferson', 'joferson_funk@hotmail.com', '123', '2', 'asd', 'free'),
-(10, 'Thiago', 'thiagobrow@hotmail.com', '123', '2', 'asd', 'pending');
+(10, 'Thiago', 'thiagobrow@hotmail.com', '123', '2', 'asd', 'pending'),
+(16, 'rubia', 'rubia', '123', '1', 'MTM0', '1');
 
 --
 -- Índices de tabelas apagadas
@@ -174,7 +171,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `logs`
@@ -198,7 +195,7 @@ ALTER TABLE `type_user`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

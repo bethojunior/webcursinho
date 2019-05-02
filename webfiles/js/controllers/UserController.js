@@ -35,5 +35,16 @@ class UserController{
         })
     }
 
+    static updateUser(data){
+        return new Promise(resolve => {
+            ConnectionServer.simpleRequest('User/UpdateUser','POST',{data}, resolve)
+        })
+    }
+
+    static insertUSer(data){
+        return new Promise(resolve => {
+            ConnectionServer.simpleRequest('User/InsertUser','POST',{data}, resolve)
+        })
+    }
 
 }

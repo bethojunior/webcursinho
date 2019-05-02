@@ -39,9 +39,24 @@ class UserController extends BaseController
         $type     = $this->byPost['type'];
 
         if(!self::checkEmail($email)){
-            $return = $this->userdao->insertUser($name , $email , $pass , $token ,true);
+            $return = $this->userdao->insertUser($name , $email , $pass , $type, $token ,true);
             echo $return;
             return true;
+        }
+
+        echo ApiResponse::getResponse(false , "Email existe");
+    }
+
+    public function actionUpdateUser(){
+        $name     = $this->byPost['name'];
+        $email    = $this->byPost['email'];
+        $pass     = $this->byPost['password'];
+        $id       = $this->byPost['id'];
+
+        if(!self::checkEmail($email)){
+            $return = $this->userdao->updateUser($name , $email , $pass , $id);
+            echo $return;
+            return;
         }
 
         echo ApiResponse::getResponse(false , "Email existe");

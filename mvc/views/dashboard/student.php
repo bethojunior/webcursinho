@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div id="modalStatus" class="modal">
+<div id="modalStatus" class="modal modal30">
     <div class="modal-content">
         <button id="blockedUser" class="btn">Bloquear</button>
         <button id="freeUser" class="btn">Liberar</button>

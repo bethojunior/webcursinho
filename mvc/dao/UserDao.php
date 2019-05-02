@@ -71,16 +71,17 @@ class UserDao extends BaseDao{
     }
 
 
-    public function insertUser($name , $email , $pass , $token , $status){
+    public function insertUser($name , $email , $pass , $type, $token , $status){
 
         try{
-            $query = "INSERT INTO users (name , email , pass , token , status ) VALUES (:name , :email , :pass , :token , :status)";
+            $query = "INSERT INTO users (name , email , password , token , status ,type) VALUES (:name , :email , :pass , :token , :status , :type)";
             $query = $this->conn->prepare($query);
-            $query -> bindValue(':name' , $name , PDO::PARAM_STR);
-            $query -> bindValue(':email' , $email , PDO::PARAM_STR);
-            $query -> bindValue(':pass' , $pass , PDO::PARAM_STR);
-            $query -> bindValue(':token' , $token , PDO::PARAM_STR);
-            $query -> bindValue(':status' , $status , PDO::PARAM_STR);
+            $query -> bindValue(':name'   , $name  , PDO::PARAM_STR);
+            $query -> bindValue(':email'  , $email , PDO::PARAM_STR);
+            $query -> bindValue(':pass'   , $pass  , PDO::PARAM_STR);
+            $query -> bindValue(':token'  , $token , PDO::PARAM_STR);
+            $query -> bindValue(':status' , $status, PDO::PARAM_STR);
+            $query -> bindValue(':type'   , $type  , PDO::PARAM_STR);
             $query->execute();
 
             if($query){
@@ -191,6 +192,28 @@ class UserDao extends BaseDao{
 
         }catch(PDOException $e){
             return false;
+        }
+    }
+
+    public function updateUser($name , $email , $password , $id){
+        try{
+            $query = "UPDATE users set name = :name , email = :email , password = :password where id = :id";
+            $query = $this->conn->prepare($query);
+            $query->bindValue(':id'       , $id       , PDO::PARAM_INT);
+            $query->bindValue(':email'    , $email    , PDO::PARAM_STR);
+            $query->bindValue(':name'     , $name     , PDO::PARAM_STR);
+            $query->bindValue(':password' , $password , PDO::PARAM_STR);
+            $query->execute();
+
+            if($query->rowCount() != 0){
+                return $this->getUserByEmail($email);
+            }
+
+            return false;
+
+
+        }catch(PDOException $e){
+            return $e->getMessage();
         }
     }
 
