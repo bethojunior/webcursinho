@@ -7,7 +7,6 @@ class Upload {
 
         try {
             $up = move_uploaded_file($file, $dir.$title);
-
             if($up){
                 return true;
             }

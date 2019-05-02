@@ -11,6 +11,11 @@ class UserController{
         })
     }
 
+    static getAll(){
+        return new Promise(resolve => {
+            ConnectionServer.simpleRequest('User/getall','POST', {} , resolve)
+        })
+    }
 
     static getUserByType(data){
         return new Promise(resolve => {
@@ -23,5 +28,12 @@ class UserController{
             ConnectionServer.simpleRequest('User/ChangeStatusStudent','POST',{data}, resolve)
         })
     }
+
+    static deleteUser(data){
+        return new Promise(resolve => {
+            ConnectionServer.simpleRequest('User/DeleteUser','POST',{data}, resolve)
+        })
+    }
+
 
 }

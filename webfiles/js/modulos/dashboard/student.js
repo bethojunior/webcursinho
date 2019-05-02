@@ -66,3 +66,7 @@ elementPorperty.addEventInElement('#freeUser','onclick',function(){
         }
     })
 });
+
+elementPorperty.addEventInElement('#searchStudent','onkeydown',function(){
+    let search = this.value;
+});

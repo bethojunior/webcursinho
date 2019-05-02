@@ -47,4 +47,28 @@ class DashboardController extends View
         $this->layoutBuilder($views, $js, $css, $seo);
     }
 
+    function actionUsers(){
+        $js  = ['controllers/UserController','modulos/nav/init','modulos/dashboard/users'];
+        $css = ['home/init','preload','dashboard/users','nav/main'];
+        $views = ['preload/index','nav/main','dashboard/users'];
+
+        $seo = new stdClass();
+        $seo->description   = '';
+        $seo->title         = 'Web cursinho';
+
+        $this->layoutBuilder($views, $js, $css, $seo);
+    }
+
+    function actionTips(){
+        $js  = ['controllers/UserController','modulos/nav/init','modulos/dashboard/tips'];
+        $css = ['home/init','preload','dashboard/tips','nav/main'];
+        $views = ['preload/index','nav/main','dashboard/tips'];
+
+        $seo = new stdClass();
+        $seo->description   = '';
+        $seo->title         = 'Web cursinho';
+
+        $this->layoutBuilder($views, $js, $css, $seo);
+    }
+
 }

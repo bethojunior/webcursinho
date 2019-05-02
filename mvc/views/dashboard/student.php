@@ -2,6 +2,7 @@
     <span class="titlePage">Alunos</span>
     <div class="divider first"></div>
     <div class="generalStudent">
+        <input id="searchStudent" placeholder="Busque aqui">
         <div class="row">
             <table class="bordered highlight">
                 <thead>

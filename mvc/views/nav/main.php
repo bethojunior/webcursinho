@@ -9,10 +9,11 @@
         </div>
         <ul>
             <li><i class="material-icons">person_outline</i><a href="<?=Host::getLocal()?>dashboard/student">Alunos</a></li>
-            <li><i class="material-icons">note</i><a href="<?=Host::getLocal()?>dashboard/notes">Notas</a></li>
+            <li><i class="material-icons">note</i><a>Notas</a></li>
             <li><i class="material-icons">attachment</i><a href="<?=Host::getLocal()?>dashboard/content">Conteúdo</a></li>
-            <li><i class="material-icons">info_outline</i>Dicas</li>
-            <li><i class="material-icons"></i>Sair</li>
+            <li><i class="material-icons">info_outline</i><a href="<?=Host::getLocal()?>dashboard/tips">Dicas</a></li>
+            <li><i class="material-icons">person</i><a href="<?=Host::getLocal()?>dashboard/users">Usuários</a></li>
+            <li id="logout"><i class="material-icons"></i>Sair</li>
         </ul>
     </div>
 </div>

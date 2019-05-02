@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 02-Maio-2019 às 10:09
--- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.2.12
+-- Host: localhost
+-- Tempo de geração: 02/05/2019 às 10:48
+-- Versão do servidor: 10.1.38-MariaDB
+-- Versão do PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wc`
+-- Banco de dados: `wc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `files`
+-- Estrutura para tabela `files`
 --
 
 CREATE TABLE `files` (
@@ -38,7 +38,7 @@ CREATE TABLE `files` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `files`
+-- Despejando dados para a tabela `files`
 --
 
 INSERT INTO `files` (`name`, `title`, `description`, `isvideo`, `id`, `datenow`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `files` (`name`, `title`, `description`, `isvideo`, `id`, `datenow`)
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `logs`
+-- Estrutura para tabela `logs`
 --
 
 CREATE TABLE `logs` (
@@ -62,7 +62,7 @@ CREATE TABLE `logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `logs`
+-- Despejando dados para a tabela `logs`
 --
 
 INSERT INTO `logs` (`id`, `level`, `message`, `user`) VALUES
@@ -72,18 +72,41 @@ INSERT INTO `logs` (`id`, `level`, `message`, `user`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `type_user`
+-- Estrutura para tabela `tips`
 --
 
-CREATE TABLE `type_user` (
+CREATE TABLE `tips` (
   `id` int(11) NOT NULL,
-  `value` varchar(20) NOT NULL
+  `title` varchar(30) NOT NULL,
+  `tip` text NOT NULL,
+  `datenow` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `users`
+-- Estrutura para tabela `type_user`
+--
+
+CREATE TABLE `type_user` (
+  `id` int(11) NOT NULL,
+  `value` varchar(20) NOT NULL,
+  `who` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Despejando dados para a tabela `type_user`
+--
+
+INSERT INTO `type_user` (`id`, `value`, `who`) VALUES
+(1, '1', 'adm'),
+(2, '2', 'student'),
+(3, '3', 'teacher');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `users`
 --
 
 CREATE TABLE `users` (
@@ -97,68 +120,85 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `users`
+-- Despejando dados para a tabela `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `token`, `status`) VALUES
-(1, 'betho', 'teste', 'teste', '1', 'MTI=', ''),
-(2, 'Rubia', 'rubia@gmail.com', '123', '2', '444', 'blocked');
+(1, 'betho', 'teste', 'teste', '1', 'Nzk=', ''),
+(2, 'Rubia', 'rubia@gmail.com', '123', '2', '444', 'blocked'),
+(3, 'José', 'jose@hotmail.com', '123', '3', 'asd', 'free'),
+(6, 'Vyne', 'vayne@hotmail.com', '123', '3', 'asd', 'free'),
+(8, 'Glaucia', 'glaucinha200@hotmail.com', '123', '2', 'asd', 'free'),
+(9, 'Jofferson', 'joferson_funk@hotmail.com', '123', '2', 'asd', 'free'),
+(10, 'Thiago', 'thiagobrow@hotmail.com', '123', '2', 'asd', 'pending');
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `files`
+-- Índices de tabela `files`
 --
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `logs`
+-- Índices de tabela `logs`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `type_user`
+-- Índices de tabela `tips`
+--
+ALTER TABLE `tips`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `type_user`
 --
 ALTER TABLE `type_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Índices de tabela `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `files`
+-- AUTO_INCREMENT de tabela `files`
 --
 ALTER TABLE `files`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `logs`
+-- AUTO_INCREMENT de tabela `logs`
 --
 ALTER TABLE `logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `type_user`
+-- AUTO_INCREMENT de tabela `tips`
 --
-ALTER TABLE `type_user`
+ALTER TABLE `tips`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de tabela `type_user`
+--
+ALTER TABLE `type_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

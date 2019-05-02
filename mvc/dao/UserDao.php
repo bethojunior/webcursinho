@@ -95,6 +95,26 @@ class UserDao extends BaseDao{
 
     }
 
+    public function deleteUser($id){
+
+        try{
+            $query = "delete from users where id = :id";
+            $query = $this->conn->prepare($query);
+            $query -> bindValue(':id' , $id , PDO::PARAM_INT);
+            $query->execute();
+
+            if($query){
+                return ApiResponse::getResponse(true , "Deletado");
+            }
+
+            return ApiResponse::getResponse(false,  $query);
+
+        }catch(Exception $e){
+            return ApiResponse::getResponse(false , $e->getMessage());
+        }
+
+    }
+
     public function checkEmail($email){
         try{
             $query = "SELECT * FROM users where email = :email";

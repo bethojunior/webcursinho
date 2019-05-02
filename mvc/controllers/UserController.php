@@ -33,19 +33,26 @@ class UserController extends BaseController
     public function actionInsertUser(){
 
         $token =  base64_encode(rand (1 , 150));
-
         $name     = $this->byPost['name'];
         $email    = $this->byPost['email'];
         $pass     = $this->byPost['pass'];
+        $type     = $this->byPost['type'];
 
         if(!self::checkEmail($email)){
-            $userDao = new UserDao();
-            $return = $userDao->insertUser($name , $email , $pass , $token ,true);
+            $return = $this->userdao->insertUser($name , $email , $pass , $token ,true);
             echo $return;
             return true;
         }
 
         echo ApiResponse::getResponse(false , "Email existe");
+    }
+
+    public function actionDeleteUser(){
+        echo $this->userdao->deleteUser($this->byPost['id']);
+    }
+
+    public function actionGetAll(){
+        echo $this->baseDao->dbGetAll('users');
     }
 
     public function actionGetUserByType(){
