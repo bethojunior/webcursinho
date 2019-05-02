@@ -154,5 +154,44 @@ class UserDao extends BaseDao{
         }
     }
 
+    public function updateStatusUser($email , $status){
+        try{
+            $query = "UPDATE users set status = :status where email = :email";
+            $query = $this->conn->prepare($query);
+            $query->bindValue(':email'    , $email , PDO::PARAM_STR);
+            $query->bindValue(':status' , $status , PDO::PARAM_STR);
+            $query->execute();
+
+            if($query->rowCount() != 0){
+                return $this->getUserByEmail($email);
+            }
+
+            return false;
+
+
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+
+    public function getUserByType($type){
+        try{
+            $query = "SELECT * FROM users where type = :type";
+            $query = $this->conn->prepare($query);
+            $query->bindValue(':type' , $type , PDO::PARAM_STR);
+            $query->execute();
+            $all = $query->fetchAll(PDO::FETCH_OBJ);
+
+            if($query->rowCount() != 0){
+                return ApiResponse::getResponse(true , 'find client' , $all);
+            }
+            return ApiResponse::getResponse(false , 'Dados não conferem' , $all);
+
+
+        }catch(PDOException $e){
+            return ApiResponse::getResponse(false , $e->getMessage() , $all);
+        }
+    }
+
 
 }

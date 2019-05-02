@@ -4,7 +4,7 @@ class HomeController extends View{
 
 
     function actionIndex(){
-        $js  = ['modulos/home/init','modulos/authenticate/login' , 'controllers/UserController'];
+        $js  = ['modulos/authenticate/login','modulos/authenticate/login' , 'controllers/UserController'];
         $css = ['home/init','preload'];
         $views = ['preload/index','home/index'];
 

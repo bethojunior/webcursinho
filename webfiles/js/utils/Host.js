@@ -5,5 +5,5 @@ if(IS_HOST_ENVIRONMENT_TEST){
     typeVersion = "Teste";
 }
 
-const HOST = '/webCursinho/';
+const HOST = '/webcursinho/';
 const HOSTCOOKIE = 'WB';

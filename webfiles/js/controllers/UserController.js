@@ -4,11 +4,6 @@ class UserController{
      * @param email
      * @returns {Promise<any>}
      */
-    static getUserByEmail(email) {
-        return new Promise(resolve => {
-            ConnectionServer.simpleRequest('User/GetUserByEmail', 'POST',{email},resolve);
-        });
-    }
 
     static authenticate(data){
         return new Promise(resolve => {
@@ -16,15 +11,16 @@ class UserController{
         })
     }
 
-    static getUserById(data){
+
+    static getUserByType(data){
         return new Promise(resolve => {
-            ConnectionServer.simpleRequest('User/getUserById','POST', data, resolve);
+            ConnectionServer.simpleRequest('User/GetUserByType','POST', {data}, resolve)
         })
     }
 
-    static getAll(){
+    static changeStatusUSer(data){
         return new Promise(resolve => {
-            ConnectionServer.simpleRequest('user/getall','POST' , {} , resolve);
+            ConnectionServer.simpleRequest('User/ChangeStatusStudent','POST',{data}, resolve)
         })
     }
 

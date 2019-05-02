@@ -10,6 +10,7 @@
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/ConnectionServer.js"></script>
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/RegisterServiceWorker.js" ></script>
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/Progress.js"></script>
+<script src="<?php echo Host::getLocal();?>webfiles/js/service/const.js"></script>
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/Position.js" ></script>
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/Mask.js" ></script>
 <script src="<?php echo Host::getLocal();?>webfiles/js/service/DateService.js" ></script>

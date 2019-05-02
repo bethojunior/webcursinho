@@ -7,5 +7,5 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
-RewriteRule ^(.+)$ /webCursinho/index/default.php?url=$1 [QSA,L]
-RewriteRule ^$ /webCursinho/index.php
+RewriteRule ^(.+)$ /webcursinho/index/default.php?url=$1 [QSA,L]
+RewriteRule ^$ /webcursinho/index.php

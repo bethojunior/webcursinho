@@ -34,9 +34,9 @@ class UserController extends BaseController
 
         $token =  base64_encode(rand (1 , 150));
 
-        $name     = $_POST['name'];
-        $email    = $_POST['email'];
-        $pass     = $_POST['pass'];
+        $name     = $this->byPost['name'];
+        $email    = $this->byPost['email'];
+        $pass     = $this->byPost['pass'];
 
         if(!self::checkEmail($email)){
             $userDao = new UserDao();
@@ -48,10 +48,26 @@ class UserController extends BaseController
         echo ApiResponse::getResponse(false , "Email existe");
     }
 
+    public function actionGetUserByType(){
+        $type = $this->byPost;
+        echo $this->userdao->getUserByType($type);
+    }
+
+    public function actionChangeStatusStudent(){
+        $status = $this->byPost['status'];
+        $email  = $this->byPost['email'];
+        echo $this->userdao->updateStatusUser($email,$status);
+    }
+
     static private function updateTokenUser($email , $pass ,  $token){
         $userDao = new UserDao();
         return $userDao->updateTokenUser($email , $pass ,$token);
     }
 
+    static public function checkEmail($email){
+        $userDao = new UserDao();
+        $return = $userDao->checkEmail($email);
+        return $return;
+    }
 
 }

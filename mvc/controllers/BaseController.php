@@ -10,6 +10,8 @@ class BaseController {
 
     private $validate;
     public $byPost;
+    public $userdao;
+    public $byGet;
 
     const LEVEL_CRITICAL    = 1;
     const LEVEL_MEDIUM      = 2;
@@ -25,6 +27,8 @@ class BaseController {
         }
 
         $this->byPost = $_POST['data'];
+        $this->byGet  = $_GET;
+        $this->userdao = new UserDao();
     }
 
 
