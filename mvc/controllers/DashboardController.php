@@ -36,7 +36,7 @@ class DashboardController extends View
     }
 
     function actionContent(){
-        $js  = ['controllers/UserController','modulos/nav/init','modulos/dashboard/content'];
+        $js  = ['controllers/UserController','controllers/ContentController','modulos/nav/init','modulos/dashboard/content'];
         $css = ['home/init','preload','dashboard/content','nav/main'];
         $views = ['preload/index','nav/main','dashboard/content'];
 

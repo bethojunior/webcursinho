@@ -1,7 +1,7 @@
 <?php
 
 
-class ContentDao extends BaseDaos
+class ContentDao extends BaseDao
 {
 
 }
