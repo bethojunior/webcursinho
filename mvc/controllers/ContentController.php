@@ -6,21 +6,29 @@ class ContentController extends BaseController
     public function actionContentFile(){
         $content   = $_FILES['content'];
         $titulo    = $_POST['titleContent'];
-        $descrição = $_POST['descriptionContent'];
+        $description = $_POST['descriptionContent'];
+        $nameImage = Image::setNameImage($content , 'content' , false);
+        $date = date('d-m-y-H-i-s');
+        $return = $this->contentDao->insertContent($nameImage, $titulo, $description , $date , false);
+        echo $return;
+    }
 
-        $dir = Host::getLocal()."files/";
+    public function actionContentFileWithVideo(){
+        $content   = $this->byPost['link'];
+        $titulo    = $this->byPost['title'];
+        $description = $this->byPost['description'];
+        $date = date('d-m-y-H-i-s');
+        $return = $this->contentDao->insertContent($content, $titulo, $description , $date , true);
+        echo $return;
+    }
 
-        if (move_uploaded_file($content["tmp_name"], "$dir".$content["name"]))
-        {
-            echo "Arquivo enviado com sucesso!";
-        }
-        else
-        {
-            echo "Erro, o arquivo n�o pode ser enviado.";
-        }
+    public function actionDeleteContent(){
+        $id = $this->byPost['id'];
+        echo $this->contentDao->deleteContent($id);
+    }
 
-//        $nameImage = Image::setNameImage($content , 'content');
-//        var_dump($nameImage);die();
+    public function actionGetAll(){
+        echo $this->baseDao->dbGetAll('files');
     }
 
 }

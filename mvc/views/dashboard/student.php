@@ -17,3 +17,13 @@
         </div>
     </div>
 </div>
+
+<div id="modalStatus" class="modal">
+    <div class="modal-content">
+        <button id="blockedUser" class="btn">Bloquear</button>
+        <button id="freeUser" class="btn">Liberar</button>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sair</a>
+    </div>
+</div>

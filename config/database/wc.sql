@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 02/05/2019 às 04:04
--- Versão do servidor: 10.1.38-MariaDB
--- Versão do PHP: 7.3.4
+-- Host: 127.0.0.1
+-- Generation Time: 02-Maio-2019 às 10:09
+-- Versão do servidor: 10.1.37-MariaDB
+-- versão do PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,24 +19,39 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `wc`
+-- Database: `wc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `files`
+-- Estrutura da tabela `files`
 --
 
 CREATE TABLE `files` (
+  `name` varchar(100) NOT NULL,
+  `title` text NOT NULL,
+  `description` text NOT NULL,
+  `isvideo` tinyint(1) NOT NULL,
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `datenow` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `files`
+--
+
+INSERT INTO `files` (`name`, `title`, `description`, `isvideo`, `id`, `datenow`) VALUES
+('02-05-19-04-33-58.jpg', 'sd', 'sd', 0, 15, '02-05-19-04-33-58'),
+('as', 'as', 'as', 1, 16, '02-05-19-04-34-03'),
+('dsf', 'sdf', 'sdf', 1, 17, '02-05-19-04-35-22'),
+('ds', 'sd', 'sd', 1, 19, '02-05-19-04-36-39'),
+('02-05-19-04-37-21.jpg', 'sdf', 'sdf', 0, 20, '02-05-19-04-37-21');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `logs`
+-- Estrutura da tabela `logs`
 --
 
 CREATE TABLE `logs` (
@@ -47,7 +62,7 @@ CREATE TABLE `logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `logs`
+-- Extraindo dados da tabela `logs`
 --
 
 INSERT INTO `logs` (`id`, `level`, `message`, `user`) VALUES
@@ -57,27 +72,18 @@ INSERT INTO `logs` (`id`, `level`, `message`, `user`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `type_user`
+-- Estrutura da tabela `type_user`
 --
 
 CREATE TABLE `type_user` (
   `id` int(11) NOT NULL,
-  `value` varchar(20) NOT NULL,
-  `type` varchar(20) DEFAULT NULL
+  `value` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Despejando dados para a tabela `type_user`
---
-
-INSERT INTO `type_user` (`id`, `value`, `type`) VALUES
-(2, '1', 'adm'),
-(3, '2', 'aluno');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Estrutura da tabela `users`
 --
 
 CREATE TABLE `users` (
@@ -87,75 +93,72 @@ CREATE TABLE `users` (
   `password` varchar(30) NOT NULL,
   `type` varchar(10) DEFAULT NULL,
   `token` varchar(20) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `users`
+-- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `token`, `status`) VALUES
-(1, 'betho', 'teste', 'teste', '1', 'MTA3', 'free'),
-(2, 'ximbinha', 'ximbinha@hotmail.com', 'senha', '2', 'sdf45', 'free'),
-(3, 'rubia', 'rubia@hotmail.com', 'senha', '2', 'sdf45', 'free'),
-(4, 'Maria', 'maria@hotmail.com', 'senha', '2', 'sdf45', 'pending'),
-(5, 'kl', 'kl@hotmail.com', 'senha', '2', 'sdf45', 'free');
+(1, 'betho', 'teste', 'teste', '1', 'MTI=', ''),
+(2, 'Rubia', 'rubia@gmail.com', '123', '2', '444', 'blocked');
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `files`
+-- Indexes for table `files`
 --
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `logs`
+-- Indexes for table `logs`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `type_user`
+-- Indexes for table `type_user`
 --
 ALTER TABLE `type_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `files`
+-- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de tabela `logs`
+-- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de tabela `type_user`
+-- AUTO_INCREMENT for table `type_user`
 --
 ALTER TABLE `type_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

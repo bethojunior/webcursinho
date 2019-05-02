@@ -12,6 +12,8 @@ class BaseController {
     public $byPost;
     public $userdao;
     public $byGet;
+    public $contentDao;
+    public $baseDao;
 
     const LEVEL_CRITICAL    = 1;
     const LEVEL_MEDIUM      = 2;
@@ -26,9 +28,11 @@ class BaseController {
             throw new Exception(ValidateRequest::AccessDenied());
         }
 
+        $this->contentDao = new ContentDao();
         $this->byPost = $_POST['data'];
         $this->byGet  = $_GET;
         $this->userdao = new UserDao();
+        $this->baseDao = new BaseDao();
     }
 
 

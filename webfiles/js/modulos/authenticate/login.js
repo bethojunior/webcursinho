@@ -31,6 +31,7 @@ elementPorperty.addEventInElement('#logar','onclick',function(){
                 swal('Ops',resolve.message,'info');
                 return;
             }
+
             Session.createCookie(HOSTCOOKIE , resolve.data[0]['id']);
             Session.createCookie(HOSTCOOKIE+'id' , resolve.data[0]['id']);
             Session.createCookie(HOSTCOOKIE+'token' , resolve.data[0]['token']);

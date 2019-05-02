@@ -3,22 +3,18 @@
 
 class Upload {
 
-    public function uploadFile($file , $titulo , $dir){
-
+    public function uploadFile($file , $title , $dir){
 
         try {
-
-            $new_name = ($titulo);
-            $up = move_uploaded_file($file['tmp_name'], $dir.$new_name);
+            $up = move_uploaded_file($file, $dir.$title);
 
             if($up){
                 return true;
-            }else {
-                return false;
             }
+            return false;
 
         }catch(Exception $e){
-            return false;
+            return $e->getMessage();
         }
 
     }

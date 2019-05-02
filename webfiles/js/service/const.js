@@ -6,3 +6,4 @@ const statusStudent = {
     'free'     : 'Liberado'
 };
 const StatusFree = 'free';
+const StatusBlocked = 'blocked'

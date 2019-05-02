@@ -20,14 +20,13 @@ class BaseDao{
             $all = $query->fetchAll(PDO::FETCH_OBJ);
 
             if($query->rowCount() != 0){
-                echo ApiResponse::showResponse(true , 'Success' , $all);
-                return;
+                return ApiResponse::showResponse(true , 'Success' , $all);
             }
 
-            echo  ApiResponse::showResponse(false , "Error");
+            return  ApiResponse::showResponse(false , "Error");
 
         }catch(PDOException $e){
-            echo ApiResponse::showResponse(false , $e->getMessage());
+            return ApiResponse::showResponse(false , $e->getMessage());
         }
 
     }

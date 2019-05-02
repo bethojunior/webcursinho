@@ -1,5 +1,8 @@
 let elementPorperty = new ElementProperty();
+let emailSeleceted = '';
 init();
+$('.modal').modal();
+
 function init() {
     elementPorperty.getElement('#mountStudenty',list => {
         _that = list;
@@ -25,16 +28,9 @@ function init() {
                 });
 
                 elementPorperty.addEventInElement('.statusStudent','onclick',function(e){
+                    $('#modalStatus').modal('open');
+                    emailSeleceted = this.getAttribute('userEmail');
                     e.stopPropagation();
-                    let data = {};
-                    data.email  = this.getAttribute('userEmail');
-                    data.status = StatusFree;
-                    UserController.changeStatusUSer(data).then(callback => {
-                        if(callback.status){
-                            swal(':)','Status alterado com sucesso','success');
-                            init();
-                        }
-                    })
                 });
             }
 
@@ -45,3 +41,28 @@ function init() {
 function checkStatus(status){
     return statusStudent[status];
 }
+
+elementPorperty.addEventInElement('#blockedUser','onclick',function(){
+    let data = {};
+    data.email  = emailSeleceted;
+    data.status = StatusBlocked;
+    UserController.changeStatusUSer(data).then(callback => {
+        if(callback.status){
+            swal(':)',emailSeleceted+' foi bloqueado  com sucesso','success');
+            init();
+        }
+    })
+});
+
+
+elementPorperty.addEventInElement('#freeUser','onclick',function(){
+    let data = {};
+    data.email  = emailSeleceted;
+    data.status = StatusFree;
+    UserController.changeStatusUSer(data).then(callback => {
+        if(callback.status){
+            swal(':)',emailSeleceted +' liberado com sucesso','success');
+            init();
+        }
+    })
+});

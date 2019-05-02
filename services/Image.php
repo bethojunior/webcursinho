@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Betho Junior
@@ -7,29 +8,21 @@
  */
 class Image{
 
-    public static function setNameImage($file , $address = null){
-        $dir = "../files/";
+    public static function setNameImage($file , $address , $bool){
 
-        if (move_uploaded_file($file["tmp_name"], "$dir".$file["name"]))
-        {
-            echo "Arquivo enviado com sucesso!";
+        $nameArray = explode(".",$file['name']);
+        $date = date('d-m-y-H-i-s');
+        $ext = end($nameArray);
+        $title = ($date.".".$ext);
+
+        $upload = new Upload();
+        $returnUp = $upload->uploadFile($file['tmp_name'] , $title , '../config/files/'.$address.'/' , $bool);
+
+        if($returnUp){
+            return $title;
+        }else {
+            return false;
         }
-        else
-        {
-            echo "Erro, o arquivo n�o pode ser enviado.";
-        }
-//        $type = $file['type'];
-//        $type = explode("/",$type);
-//        $ext =  $type[1];
-//        $date = date('d-m-y-H-i-s');
-//        $title = ($date.".".$ext);
-//        move_uploaded_file($file["tmp_name"],"/files/asd.jpg");
-//
-//        if($returnUp){
-//            return $title;
-//        }else {
-//            return false;
-//        }
     }
 
 }
